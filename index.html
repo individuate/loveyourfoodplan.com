@@ -3,10 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Your Food Plan</title>
+    <title>Love Your Food Plan — Meal planning that starts with what you love</title>
+    <meta name="description" content="AI-powered meal plans built around your tastes, diet, and preferences. A native macOS app.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            background-color: #FAF8F5;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 64px;
+            flex-shrink: 0;
+        }
+        .nav-title {
+            font-family: "Instrument Serif", serif;
+            font-size: 22px;
+            color: #1C1917;
+            letter-spacing: -0.01em;
+        }
+        .nav-badge {
+            font-size: 13px;
+            color: #9C9590;
+            letter-spacing: 0.04em;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 0 64px;
+            gap: 40px;
+        }
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        h1 {
+            font-family: "Instrument Serif", serif;
+            font-size: 72px;
+            font-weight: 400;
+            color: #1C1917;
+            letter-spacing: -0.03em;
+            line-height: 80px;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #9C9590;
+            line-height: 28px;
+            text-align: center;
+            max-width: 520px;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background-color: #C45D3E;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.15s ease;
+        }
+        .download-btn:hover {
+            background-color: #B05236;
+        }
+        .download-btn .label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFFFFF;
+            letter-spacing: -0.01em;
+        }
+        .download-btn .version {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .requirement {
+            font-size: 13px;
+            color: #B5B0AA;
+            line-height: 20px;
+        }
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 64px;
+            flex-shrink: 0;
+            gap: 8px;
+        }
+        .footer-text {
+            font-size: 13px;
+            color: #C8C3BD;
+        }
+        @media (max-width: 640px) {
+            .nav { padding: 20px 24px; }
+            .hero { padding: 0 24px; }
+            h1 { font-size: 44px; line-height: 50px; }
+            .subtitle { font-size: 16px; line-height: 24px; }
+            .footer { padding: 20px 24px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Love Your Food Plan</h1>
-    <p>Coming soon.</p>
+    <div class="page">
+        <nav class="nav">
+            <span class="nav-title">Love Your Food Plan</span>
+            <span class="nav-badge">macOS app</span>
+        </nav>
+        <main class="hero">
+            <div class="hero-content">
+                <h1>Meal planning that<br>starts with what you love</h1>
+                <p class="subtitle">AI-powered meal plans built around your tastes, diet, and preferences. Everything runs locally on your Mac, except for the features that require Claude AI.</p>
+                <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="download-btn">
+                    <span class="label">Download for Mac</span>
+                    <span class="version">v0.1.0</span>
+                </a>
+                <p class="requirement">Requires macOS 15 Sequoia or later</p>
+            </div>
+        </main>
+        <footer class="footer">
+            <p class="footer-text">No login. No cloud. Your data stays on your Mac (except for the Claude AI requests).</p>
+            <p class="footer-text">&copy; 2026 Individuate LLC</p>
+        </footer>
+    </div>
 </body>
 </html>

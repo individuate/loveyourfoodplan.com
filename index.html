@@ -135,18 +135,19 @@
         }
         .feature-screenshot {
             flex-grow: 1;
-            height: 380px;
+            min-width: 0;
             background-color: #F0EDE8;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
         }
         .feature-screenshot img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             border-radius: 12px;
         }
         .feature-screenshot .placeholder {
@@ -177,18 +178,18 @@
         }
         .showcase-screenshot {
             width: 100%;
-            height: 480px;
             background-color: #F0EDE8;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
         }
         .showcase-screenshot img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             border-radius: 12px;
         }
         .showcase-screenshot .placeholder {
@@ -287,9 +288,9 @@
             }
             .feature.reverse { flex-direction: column; }
             .feature-text { width: 100%; }
-            .feature-screenshot { width: 100%; height: 260px; }
+            .feature-screenshot { width: 100%; }
             .showcase { padding: 60px 24px; gap: 32px; }
-            .showcase-screenshot { height: 300px; }
+            .showcase-screenshot { width: 100%; }
             .info { padding: 60px 24px; }
             .cta { padding: 40px 24px 24px; }
             .footer { padding: 24px; }
@@ -324,14 +325,14 @@
             <p>Just click the ones you want to use. Click the info button to get a description &mdash; maybe you'll want to try a new approach.</p>
         </div>
         <div class="feature-screenshot">
-            <span class="placeholder">Screenshot: Dietary Approaches</span>
+            <img src="images/screenshot-approaches.png" alt="Dietary approaches view showing clickable chips for 21 diet approaches like Mediterranean, Anti-Inflammatory, and Low-Glycemic, plus custom approaches">
         </div>
     </section>
 
     <!-- Step 2: Dietary Restrictions -->
     <section class="feature reverse">
         <div class="feature-screenshot">
-            <span class="placeholder">Screenshot: Dietary Restrictions</span>
+            <img src="images/screenshot-restrictions.png" alt="Dietary restrictions view showing chips for common restrictions like Gluten, Dairy, and Histamine with severity badges for mild, moderate, or strict">
         </div>
         <div class="feature-text">
             <span class="step">Step 2</span>
@@ -348,20 +349,21 @@
             <p>In five minutes you can design a set of preferences that guarantee you'll like the meals suggested. Click once for each food &mdash; from Strong Like to Strong Dislike.</p>
         </div>
         <div class="feature-screenshot">
-            <span class="placeholder">Screenshot: Food Preferences</span>
+            <img src="images/screenshot-preferences.png" alt="Food preferences view showing a grid of vegetables with rating buttons from Strong Like to Strong Dislike, diet approach badges, and 11 food groups with summary counts">
         </div>
     </section>
 
     <!-- Step 4: Generate -->
     <section class="feature reverse">
         <div class="feature-screenshot">
-            <span class="placeholder">Screenshot: New Meal Plan</span>
+            <img src="images/screenshot-new-meal-plan.png" alt="New Meal Plan view showing options for cooking complexity, servings, meal counts per category, leftovers, child-friendly options, and special instructions">
         </div>
         <div class="feature-text">
             <span class="step">Step 4</span>
             <h3>Generate a meal plan</h3>
             <p>Set cooking complexity from minimal assembly to elaborate weekend cooking. Choose how many breakfasts, lunches, dinners, and snacks. Add leftovers, child-friendly options, or special instructions.</p>
             <p>Click Generate and wait ten seconds.</p>
+            <img src="images/screenshot-generating.png" alt="Generating your meal plan progress indicator" style="width: 360px; border-radius: 8px; margin-top: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);">
         </div>
     </section>
 
@@ -372,7 +374,7 @@
             <p>If one doesn't appeal, click "New Suggestion" and Claude will make another, avoiding ingredients already used in surrounding meals. Use it as a weekly plan or just a reference for new ideas.</p>
         </div>
         <div class="showcase-screenshot">
-            <span class="placeholder">Screenshot: Meal Plan Grid View</span>
+            <img src="images/screenshot-meal-plan-grid.png" alt="Meal plan grid showing Mediterranean Bright Weeknights with breakfast, lunch, and dinner categories, each with three meal cards listing ingredients and options to get a new suggestion or generate a recipe">
         </div>
     </section>
 
@@ -384,7 +386,7 @@
             <p>Prints great too &mdash; both recipes and meal plans have excellent PDF export. Click the download icon in the upper right corner.</p>
         </div>
         <div class="feature-screenshot">
-            <span class="placeholder">Screenshot: Recipe</span>
+            <img src="images/screenshot-recipe.png" alt="Recipe view for One-Pan Rosemary Chicken with Asparagus and Potatoes showing ingredients in two columns, 8 numbered cooking steps, prep and cook times">
         </div>
     </section>
 
@@ -393,12 +395,13 @@
         <h3>Get your own AI for food plans</h3>
         <p>You need a Claude "API key" to use the AI features. It's simple, and we step you through it. There's no subscription &mdash; you create an account with Claude (made by Anthropic) and purchase a minimum of $5 in credits. The credits last for a year.</p>
         <p>We track the costs in the app for you &mdash; a typical meal plan costs a few cents, a recipe is usually a penny or two. $5 will go a long way.</p>
+        <img src="images/screenshot-api-key.png" alt="Set Up Your AI Provider panel showing 4 steps: create an Anthropic account, add credits, create an API key, and paste it into the app" style="width: 540px; border-radius: 12px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);">
     </section>
 
     <!-- Download CTA -->
     <section class="cta">
-        <h3>Download for Mac</h3>
-        <p class="free">Currently free.</p>
+        <h2>Download for Mac</h2>
+        <p class="free">Currently fully free! No demo mode, no ads.</p>
         <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="download-btn">
             <span class="label">Download for Mac</span>
             <span class="version">v0.1.0</span>

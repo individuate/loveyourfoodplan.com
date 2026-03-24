@@ -2,6 +2,13 @@
 
 ## 2026-03-24
 
+### Add app screenshots and polish copy
+- Added 7 app screenshots: dietary approaches, restrictions, food preferences, new meal plan, generating spinner, meal plan grid, recipe, and API key setup
+- Cropped approaches and restrictions to tight chip-only views; preferences onward show full app with sidebar
+- Screenshot containers use auto-height with subtle box-shadow for definition
+- Copy tweaks: "NO CLUTTER" caps, "filled with ads" addition, medium-weight emphasis, "Currently fully free! No demo mode, no ads."
+- Download CTA heading bumped to h2 for more presence
+
 ### Expand to full marketing page
 - Replaced minimal hero-only landing page with full scrolling marketing page
 - Added sections: intro hook ("Love your food plan!"), 4 step-by-step feature sections with alternating text/screenshot layout, full-width meal plan showcase, recipe section, API key explanation, download CTA

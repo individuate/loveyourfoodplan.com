@@ -1,5 +1,16 @@
 # loveyourfoodplan.com — History
 
+## 2026-03-24
+
+### Expand to full marketing page
+- Replaced minimal hero-only landing page with full scrolling marketing page
+- Added sections: intro hook ("Love your food plan!"), 4 step-by-step feature sections with alternating text/screenshot layout, full-width meal plan showcase, recipe section, API key explanation, download CTA
+- Screenshot placeholders ready for app screenshots to be dropped in
+- Terracotta accent used for step labels, hook paragraph, and strikethrough detail
+- Medium-weight (500) emphasis on key phrase in intro
+- Improved footer contrast and added TelemetryDeck privacy note
+- Mobile responsive: feature sections stack vertically under 640px
+
 ## 2026-03-23
 
 ### Initial setup

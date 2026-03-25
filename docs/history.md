@@ -2,6 +2,14 @@
 
 ## 2026-03-25
 
+### Typography: rem units, fluid headings, consolidated scale
+- Converted all font-sizes from px to rem for accessibility (respects user base font preference)
+- Headings use fluid clamp() sizing — scales smoothly from phone to desktop, no breakpoint jumps
+- Consolidated muddy mid-range: 15/16/17/18px collapsed to two sizes (1rem body, 1.125rem featured)
+- Unified small text (step labels, footer, badges) at 0.8125rem with consistent line-height 1.5
+- All line-heights converted to unitless ratios
+- Removed 6 heading-specific breakpoint overrides now handled by clamp()
+
 ### Button contrast and WebP image optimization
 - Separated button background into `--color-btn-bg` token so dark mode button stays #B94D32 (5.03:1 with white text) while text accent uses lighter #E07A5C
 - Button version text changed from 0.85-opacity to full white (5.03:1, passes AA)

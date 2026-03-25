@@ -1,5 +1,25 @@
 # loveyourfoodplan.com — History
 
+## 2026-03-25
+
+### Button contrast and WebP image optimization
+- Separated button background into `--color-btn-bg` token so dark mode button stays #B94D32 (5.03:1 with white text) while text accent uses lighter #E07A5C
+- Button version text changed from 0.85-opacity to full white (5.03:1, passes AA)
+- Converted all 10 screenshots from PNG to WebP: 3.3MB → 1.1MB (67% reduction)
+
+### Accessibility, contrast, dark mode, and performance audit fixes
+- Extracted all hard-coded colors to CSS custom properties (`:root` variables)
+- Added dark mode via `prefers-color-scheme: dark` with full inverted palette
+- Fixed WCAG AA contrast failures: secondary text (#9C9590 → #78716C), accent (#C45D3E → #B94D32 for text, #E07A5C for dark mode), button version text opacity (0.6 → 0.85)
+- Added skip-to-content link, `<main>` landmark, `aria-label` on nav
+- Made screenshot images keyboard-accessible: `tabindex="0"`, `role="button"`, Enter/Space handlers
+- Lightbox now has `role="dialog"`, `aria-modal`, visible close button, focus trap, and focus restoration
+- Added `:focus-visible` outlines site-wide
+- Added `loading="lazy"` and `width`/`height` attributes to all below-fold images
+- Added `defer` to TelemetryDeck script
+- Added 480px small-phone breakpoint with tighter padding and smaller headings
+- Added SVG emoji favicon and `meta theme-color` (light + dark)
+
 ## 2026-03-24
 
 ### Add app screenshots and polish copy

@@ -3,22 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FAF8F5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1C1917" media="(prefers-color-scheme: dark)">
     <title>Love Your Food Plan — Meal planning that starts with what you love</title>
     <meta name="description" content="AI-powered meal plans built around your dietary approaches, restrictions, and personal preferences. A native macOS app.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍊</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-bg: #FAF8F5;
+            --color-bg-subtle: #F0EDE8;
+            --color-text: #1C1917;
+            --color-body: #57534E;
+            --color-secondary: #78716C;
+            --color-accent: #B94D32;
+            --color-accent-hover: #A34529;
+            --color-btn-bg: #B94D32;
+            --color-btn-bg-hover: #A34529;
+            --color-btn-text: #FFFFFF;
+            --color-btn-version: #FFFFFF;
+            --color-shadow-sm: rgba(0, 0, 0, 0.06);
+            --color-shadow-md: rgba(0, 0, 0, 0.04);
+            --color-shadow-lg: rgba(0, 0, 0, 0.4);
+            --color-overlay: rgba(0, 0, 0, 0.8);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #1C1917;
+                --color-bg-subtle: #292524;
+                --color-text: #FAF8F5;
+                --color-body: #D6D3D1;
+                --color-secondary: #A8A29E;
+                --color-accent: #E07A5C;
+                --color-accent-hover: #C45D3E;
+                --color-btn-bg: #B94D32;
+                --color-btn-bg-hover: #A34529;
+                --color-btn-text: #FFFFFF;
+                --color-btn-version: #FFFFFF;
+                --color-shadow-sm: rgba(0, 0, 0, 0.15);
+                --color-shadow-md: rgba(0, 0, 0, 0.1);
+                --color-shadow-lg: rgba(0, 0, 0, 0.6);
+                --color-overlay: rgba(0, 0, 0, 0.85);
+            }
+        }
+
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { height: 100%; }
         body {
-            background-color: #FAF8F5;
+            background-color: var(--color-bg);
             font-family: "Inter", system-ui, sans-serif;
             font-size: 16px;
-            color: #57534E;
+            color: var(--color-body);
             line-height: 26px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Skip link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            padding: 8px 16px;
+            background: var(--color-accent);
+            color: var(--color-btn-text);
+            text-decoration: none;
+            border-radius: 0 0 6px 6px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 2000;
+            transition: top 0.15s ease;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus indicators */
+        :focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 3px;
+            border-radius: 4px;
         }
 
         /* Nav */
@@ -31,12 +97,12 @@
         .nav-title {
             font-family: "Instrument Serif", serif;
             font-size: 22px;
-            color: #1C1917;
+            color: var(--color-text);
             letter-spacing: -0.01em;
         }
         .nav-badge {
             font-size: 13px;
-            color: #9C9590;
+            color: var(--color-secondary);
             letter-spacing: 0.04em;
         }
 
@@ -44,7 +110,7 @@
         h1, h2, h3 {
             font-family: "Instrument Serif", serif;
             font-weight: 400;
-            color: #1C1917;
+            color: var(--color-text);
         }
         h1 {
             font-size: 72px;
@@ -74,14 +140,14 @@
         }
         .hero .subtitle {
             font-size: 18px;
-            color: #9C9590;
+            color: var(--color-secondary);
             line-height: 28px;
             text-align: center;
             max-width: 540px;
         }
         .hero .aside {
             font-size: 14px;
-            color: #9C9590;
+            color: var(--color-secondary);
             line-height: 22px;
             text-align: center;
         }
@@ -101,11 +167,11 @@
             line-height: 28px;
         }
         .intro .hook {
-            color: #C45D3E;
+            color: var(--color-accent);
             font-weight: 500;
         }
         .intro .hook s {
-            text-decoration-color: #C45D3E;
+            text-decoration-color: var(--color-accent);
         }
 
         /* Feature sections */
@@ -124,7 +190,7 @@
         }
         .feature-text .step {
             font-size: 13px;
-            color: #C45D3E;
+            color: var(--color-accent);
             letter-spacing: 0.06em;
             font-weight: 500;
             text-transform: uppercase;
@@ -136,23 +202,24 @@
         .feature-screenshot {
             flex-grow: 1;
             min-width: 0;
-            background-color: #F0EDE8;
+            background-color: var(--color-bg-subtle);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 3px var(--color-shadow-sm), 0 4px 12px var(--color-shadow-md);
         }
         .feature-screenshot img {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 12px;
+            cursor: zoom-in;
         }
         .feature-screenshot .placeholder {
             font-size: 14px;
-            color: #B5B0AA;
+            color: var(--color-secondary);
         }
 
         /* Showcase (full-width screenshot section) */
@@ -178,23 +245,24 @@
         }
         .showcase-screenshot {
             width: 100%;
-            background-color: #F0EDE8;
+            background-color: var(--color-bg-subtle);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 3px var(--color-shadow-sm), 0 4px 12px var(--color-shadow-md);
         }
         .showcase-screenshot img {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 12px;
+            cursor: zoom-in;
         }
         .showcase-screenshot .placeholder {
             font-size: 14px;
-            color: #B5B0AA;
+            color: var(--color-secondary);
         }
 
         /* Diet-specific examples */
@@ -212,7 +280,7 @@
         .diet-label {
             font-family: "Instrument Serif", serif;
             font-size: 24px;
-            color: #1C1917;
+            color: var(--color-text);
             text-align: center;
             letter-spacing: -0.01em;
         }
@@ -232,6 +300,9 @@
             text-align: center;
             max-width: 580px;
         }
+        .info img {
+            box-shadow: 0 1px 3px var(--color-shadow-sm), 0 4px 12px var(--color-shadow-md);
+        }
 
         /* Download CTA */
         .cta {
@@ -245,34 +316,34 @@
             text-align: center;
         }
         .cta .free {
-            color: #9C9590;
+            color: var(--color-secondary);
         }
         .download-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             padding: 16px 36px;
-            background-color: #C45D3E;
+            background-color: var(--color-btn-bg);
             border-radius: 8px;
             text-decoration: none;
             transition: background-color 0.15s ease;
         }
         .download-btn:hover {
-            background-color: #B05236;
+            background-color: var(--color-btn-bg-hover);
         }
         .download-btn .label {
             font-size: 16px;
             font-weight: 500;
-            color: #FFFFFF;
+            color: var(--color-btn-text);
             letter-spacing: -0.01em;
         }
         .download-btn .version {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--color-btn-version);
         }
         .requirement {
             font-size: 13px;
-            color: #B5B0AA;
+            color: var(--color-secondary);
             line-height: 20px;
         }
 
@@ -286,18 +357,17 @@
         }
         .footer p {
             font-size: 13px;
-            color: #9C9590;
+            color: var(--color-secondary);
             text-align: center;
             line-height: 20px;
         }
 
-        /* Mobile */
         /* Lightbox */
         .lightbox-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--color-overlay);
             z-index: 1000;
             cursor: pointer;
             align-items: center;
@@ -309,13 +379,32 @@
             max-width: 100%;
             max-height: 100%;
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 32px var(--color-shadow-lg);
         }
-        .feature-screenshot img,
-        .showcase-screenshot img,
-        .diet-example .feature-screenshot img { cursor: zoom-in; }
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 32px;
+            cursor: pointer;
+            padding: 8px;
+            line-height: 1;
+            transition: color 0.15s ease;
+        }
+        .lightbox-close:hover {
+            color: #FFFFFF;
+        }
+        .lightbox-close:focus-visible {
+            outline: 2px solid #FFFFFF;
+            outline-offset: 2px;
+        }
 
         .desktop-only { display: block; }
+
+        /* Tablet */
         @media (max-width: 960px) {
             .desktop-only { display: none; }
             .nav { padding: 20px 24px; }
@@ -341,14 +430,37 @@
             .cta { padding: 40px 24px 24px; }
             .footer { padding: 24px; }
         }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            h1 { font-size: 34px; line-height: 40px; }
+            h2 { font-size: 26px; line-height: 34px; }
+            h3 { font-size: 22px; line-height: 30px; }
+            .hero { padding: 60px 16px 48px; gap: 20px; }
+            .hero .subtitle { font-size: 15px; }
+            .intro { padding: 16px 16px 48px; }
+            .feature { padding: 32px 16px; gap: 24px; }
+            .showcase { padding: 48px 16px; gap: 24px; }
+            .diet-examples { padding: 0 16px 48px; gap: 24px; }
+            .info { padding: 48px 16px; }
+            .cta { padding: 32px 16px 20px; }
+            .footer { padding: 20px 16px; }
+            .nav { padding: 16px; }
+            .lightbox-overlay { padding: 16px; }
+            .download-btn { padding: 14px 28px; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="nav">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <nav class="nav" aria-label="Site">
         <span class="nav-title">Love Your Food Plan</span>
         <span class="nav-badge">macOS app</span>
     </nav>
+
+    <main id="main">
 
     <section class="hero">
         <h1>Meal planning that<br>starts with what you love</h1>
@@ -371,14 +483,14 @@
             <p>Just click the ones you want to use. Click the info button to get a description &mdash; maybe you'll want to try a new approach. Add custom approaches, Claude will figure it out.</p>
         </div>
         <div class="feature-screenshot">
-            <img src="images/screenshot-approaches.png" alt="Dietary approaches view showing clickable chips for 21 diet approaches like Mediterranean, Anti-Inflammatory, and Low-Glycemic, plus custom approaches">
+            <img src="images/screenshot-approaches.webp" alt="Dietary approaches view showing clickable chips for 21 diet approaches like Mediterranean, Anti-Inflammatory, and Low-Glycemic, plus custom approaches" width="1700" height="740" tabindex="0" role="button" aria-label="View larger: dietary approaches screenshot">
         </div>
     </section>
 
     <!-- Step 2: Dietary Restrictions -->
     <section class="feature reverse">
         <div class="feature-screenshot">
-            <img src="images/screenshot-restrictions.png" alt="Dietary restrictions view showing Gluten set to Mild and Histamine set to Moderate, demonstrating different severity levels across 16 common restrictions">
+            <img src="images/screenshot-restrictions.webp" alt="Dietary restrictions view showing Gluten set to Mild and Histamine set to Moderate, demonstrating different severity levels across 16 common restrictions" width="1622" height="610" loading="lazy" tabindex="0" role="button" aria-label="View larger: dietary restrictions screenshot">
         </div>
         <div class="feature-text">
             <span class="step">Step 2</span>
@@ -395,21 +507,21 @@
             <p>In five minutes you can design a set of preferences that guarantee you'll like the meals suggested. Click once for each food &mdash; from Strong Like to Strong Dislike.</p>
         </div>
         <div class="feature-screenshot">
-            <img src="images/screenshot-preferences.png" alt="Food preferences view showing a grid of vegetables with rating buttons from Strong Like to Strong Dislike, diet approach badges, and 11 food groups with summary counts">
+            <img src="images/screenshot-preferences.webp" alt="Food preferences view showing a grid of vegetables with rating buttons from Strong Like to Strong Dislike, diet approach badges, and 11 food groups with summary counts" width="2232" height="1602" loading="lazy" tabindex="0" role="button" aria-label="View larger: food preferences screenshot">
         </div>
     </section>
 
     <!-- Step 4: Generate -->
     <section class="feature reverse">
         <div class="feature-screenshot">
-            <img src="images/screenshot-new-meal-plan.png" alt="New Meal Plan view showing options for cooking complexity, servings, meal counts per category, leftovers, child-friendly options, and special instructions">
+            <img src="images/screenshot-new-meal-plan.webp" alt="New Meal Plan view showing options for cooking complexity, servings, meal counts per category, leftovers, child-friendly options, and special instructions" width="1788" height="1240" loading="lazy" tabindex="0" role="button" aria-label="View larger: new meal plan options screenshot">
         </div>
         <div class="feature-text">
             <span class="step">Step 4</span>
             <h3>Generate a meal plan</h3>
             <p>Set cooking complexity from minimal assembly to elaborate weekend cooking. Choose how many breakfasts, lunches, dinners, and snacks. Add leftovers, child-friendly options, or special instructions.</p>
             <p>Click Generate and wait ten seconds.</p>
-            <img class="desktop-only" src="images/screenshot-generating.png" alt="Generating your meal plan progress indicator" style="width: 360px; max-width: 100%; border-radius: 8px; margin-top: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);">
+            <img class="desktop-only" src="images/screenshot-generating.webp" alt="Generating your meal plan progress indicator" width="1182" height="164" loading="lazy" style="width: 360px; max-width: 100%; height: auto; border-radius: 8px; margin-top: 8px; box-shadow: 0 1px 3px var(--color-shadow-sm), 0 4px 12px var(--color-shadow-md);">
         </div>
     </section>
 
@@ -420,7 +532,7 @@
             <p>If one doesn't appeal, click "New Suggestion" and Claude will make another, avoiding ingredients already used in surrounding meals. Use it as a weekly plan or just a reference for new ideas.</p>
         </div>
         <div class="showcase-screenshot">
-            <img src="images/screenshot-meal-plan-grid.png" alt="Meal plan grid showing Mediterranean Bright Weeknights with breakfast, lunch, and dinner categories, each with three meal cards listing ingredients and options to get a new suggestion or generate a recipe">
+            <img src="images/screenshot-meal-plan-grid.webp" alt="Meal plan grid showing Mediterranean Bright Weeknights with breakfast, lunch, and dinner categories, each with three meal cards listing ingredients and options to get a new suggestion or generate a recipe" width="2940" height="1834" loading="lazy" tabindex="0" role="button" aria-label="View larger: meal plan grid screenshot">
         </div>
     </section>
 
@@ -429,13 +541,13 @@
         <div class="diet-example">
             <p class="diet-label">Committed carnivore? We've got you.</p>
             <div class="feature-screenshot">
-                <img src="images/screenshot-carnivore.png" alt="Carnivore meal plan showing lunch and dinner options like Coconut Aminos Chicken Bowl, Bacon-Wrapped Asparagus with Eggs, One-Pan Rosemary Butter Chicken Thighs, and Pan-Seared Lamb Chops">
+                <img src="images/screenshot-carnivore.webp" alt="Carnivore meal plan showing lunch and dinner options like Coconut Aminos Chicken Bowl, Bacon-Wrapped Asparagus with Eggs, One-Pan Rosemary Butter Chicken Thighs, and Pan-Seared Lamb Chops" width="2394" height="936" loading="lazy" tabindex="0" role="button" aria-label="View larger: carnivore meal plan screenshot">
             </div>
         </div>
         <div class="diet-example">
             <p class="diet-label">Fully vegan? Every meal fits.</p>
             <div class="feature-screenshot">
-                <img src="images/screenshot-vegan.png" alt="Vegan meal plan showing lunch and dinner options like Hummus Veggie Tortilla Wraps, Red Lentil Soup, One-Pan Tempeh with Broccoli, and Black Bean Corn Skillet Tacos">
+                <img src="images/screenshot-vegan.webp" alt="Vegan meal plan showing lunch and dinner options like Hummus Veggie Tortilla Wraps, Red Lentil Soup, One-Pan Tempeh with Broccoli, and Black Bean Corn Skillet Tacos" width="2394" height="976" loading="lazy" tabindex="0" role="button" aria-label="View larger: vegan meal plan screenshot">
             </div>
         </div>
     </section>
@@ -448,7 +560,7 @@
             <p>Prints great too &mdash; both recipes and meal plans have excellent PDF export. Click the download icon in the upper right corner.</p>
         </div>
         <div class="feature-screenshot">
-            <img src="images/screenshot-recipe.png" alt="Recipe view for One-Pan Rosemary Chicken with Asparagus and Potatoes showing ingredients in two columns, 8 numbered cooking steps, prep and cook times">
+            <img src="images/screenshot-recipe.webp" alt="Recipe view for One-Pan Rosemary Chicken with Asparagus and Potatoes showing ingredients in two columns, 8 numbered cooking steps, prep and cook times" width="2728" height="1802" loading="lazy" tabindex="0" role="button" aria-label="View larger: recipe screenshot">
         </div>
     </section>
 
@@ -457,7 +569,7 @@
         <h3>Get your own AI for food plans</h3>
         <p>You need a Claude "API key" to use the AI features. It's simple, and we step you through it. There's no subscription &mdash; you create an account with Claude (made by Anthropic) and purchase a minimum of $5 in credits. The credits last for a year.</p>
         <p>We track the costs in the app for you &mdash; a typical meal plan costs a few cents, a recipe is usually a penny or two. $5 will go a long way. (You pay Anthropic directly — we never see your data or take a cut.)</p>
-        <img src="images/screenshot-api-key.png" alt="Set Up Your AI Provider panel showing 4 steps: create an Anthropic account, add credits, create an API key, and paste it into the app" style="width: 540px; max-width: 100%; border-radius: 12px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);">
+        <img src="images/screenshot-api-key.webp" alt="Set Up Your AI Provider panel showing 4 steps: create an Anthropic account, add credits, create an API key, and paste it into the app" width="1992" height="962" loading="lazy" style="width: 540px; max-width: 100%; height: auto; border-radius: 12px; margin-top: 16px;">
     </section>
 
     <!-- Download CTA -->
@@ -471,39 +583,78 @@
         <p class="requirement">Requires macOS 15 Sequoia or later</p>
     </section>
 
+    </main>
+
     <footer class="footer">
         <p>Everything runs locally, your data stays on your Mac (except for the Claude AI requests, which we don't see).</p>
         <p>The website and app use TelemetryDeck to collect anonymized usage data &mdash; no cookies, no ID, no personally identifiable information.</p>
         <p>&copy; 2026 Individuate LLC</p>
     </footer>
 
-    <script src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js" data-app-id="E57678CD-7E09-49A9-B6A3-61D954F4DD7B"></script>
+    <script src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js" data-app-id="E57678CD-7E09-49A9-B6A3-61D954F4DD7B" defer></script>
 
-    <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+        <button class="lightbox-close" aria-label="Close preview">&times;</button>
         <img id="lightbox-img" src="" alt="">
     </div>
     <script>
-        const td = window.TelemetryDeck;
         const overlay = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
+        const closeBtn = overlay.querySelector('.lightbox-close');
+        let previousFocus = null;
+
+        function openLightbox(img) {
+            previousFocus = document.activeElement;
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            overlay.classList.add('active');
+            closeBtn.focus();
+            const td = window.TelemetryDeck;
+            td?.signal('screenshotZoomed', { image: img.src.split('/').pop() });
+        }
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            lbImg.src = '';
+            if (previousFocus) {
+                previousFocus.focus();
+                previousFocus = null;
+            }
+        }
 
         // Download button click
         document.querySelector('.download-btn').addEventListener('click', () => {
+            const td = window.TelemetryDeck;
             td?.signal('downloadClicked');
         });
 
-        // Lightbox
+        // Lightbox: click to open
         document.querySelectorAll('.feature-screenshot img, .showcase-screenshot img').forEach(img => {
-            img.addEventListener('click', () => {
-                lbImg.src = img.src;
-                lbImg.alt = img.alt;
-                overlay.classList.add('active');
-                td?.signal('screenshotZoomed', { image: img.src.split('/').pop() });
+            img.addEventListener('click', () => openLightbox(img));
+            img.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(img);
+                }
             });
         });
-        overlay.addEventListener('click', () => overlay.classList.remove('active'));
+
+        // Lightbox: close on overlay click (but not image click)
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay || e.target === closeBtn) closeLightbox();
+        });
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // Lightbox: close on ESC, trap focus
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') overlay.classList.remove('active');
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeLightbox();
+            }
+            // Focus trap: keep Tab within lightbox when open
+            if (e.key === 'Tab' && overlay.classList.contains('active')) {
+                e.preventDefault();
+                closeBtn.focus();
+            }
         });
     </script>
 </body>

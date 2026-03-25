@@ -272,7 +272,9 @@
         }
 
         /* Mobile */
+        .desktop-only { display: block; }
         @media (max-width: 960px) {
+            .desktop-only { display: none; }
             .nav { padding: 20px 24px; }
             .hero { padding: 80px 24px 60px; }
             h1 { font-size: 44px; line-height: 50px; }
@@ -363,7 +365,7 @@
             <h3>Generate a meal plan</h3>
             <p>Set cooking complexity from minimal assembly to elaborate weekend cooking. Choose how many breakfasts, lunches, dinners, and snacks. Add leftovers, child-friendly options, or special instructions.</p>
             <p>Click Generate and wait ten seconds.</p>
-            <img src="images/screenshot-generating.png" alt="Generating your meal plan progress indicator" style="width: 360px; max-width: 100%; border-radius: 8px; margin-top: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);">
+            <img class="desktop-only" src="images/screenshot-generating.png" alt="Generating your meal plan progress indicator" style="width: 360px; max-width: 100%; border-radius: 8px; margin-top: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);">
         </div>
     </section>
 

@@ -146,10 +146,28 @@
             max-width: 540px;
         }
         .hero .aside {
-            font-size: 14px;
-            color: var(--color-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-text);
             line-height: 22px;
             text-align: center;
+            letter-spacing: 0.01em;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            border: 1.5px solid var(--color-accent);
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-accent);
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+        .hero-cta:hover {
+            background-color: var(--color-accent);
+            color: var(--color-btn-text);
         }
 
         /* Intro */
@@ -216,6 +234,10 @@
             display: block;
             border-radius: 12px;
             cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .feature-screenshot img:hover {
+            transform: scale(1.02);
         }
         .feature-screenshot .placeholder {
             font-size: 14px;
@@ -259,6 +281,10 @@
             display: block;
             border-radius: 12px;
             cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        .showcase-screenshot img:hover {
+            transform: scale(1.02);
         }
         .showcase-screenshot .placeholder {
             font-size: 14px;
@@ -465,7 +491,8 @@
     <section class="hero">
         <h1>Meal planning that<br>starts with what you love</h1>
         <p class="subtitle">AI-powered meal plans built around your dietary approaches, restrictions, and personal preferences.</p>
-        <p class="aside" style="font-weight: 500;">Old-school macOS app. No login. No cloud.</p>
+        <p class="aside">Old-school macOS app. No login. No cloud.</p>
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="hero-cta">Download for Mac</a>
     </section>
 
     <section class="intro">
@@ -564,14 +591,6 @@
         </div>
     </section>
 
-    <!-- API Key -->
-    <section class="info">
-        <h3>Get your own AI for food plans</h3>
-        <p>You need a Claude "API key" to use the AI features. It's simple, and we step you through it. There's no subscription &mdash; you create an account with Claude (made by Anthropic) and purchase a minimum of $5 in credits. The credits last for a year.</p>
-        <p>We track the costs in the app for you &mdash; a typical meal plan costs a few cents, a recipe is usually a penny or two. $5 will go a long way. (You pay Anthropic directly — we never see your data or take a cut.)</p>
-        <img src="images/screenshot-api-key.webp" alt="Set Up Your AI Provider panel showing 4 steps: create an Anthropic account, add credits, create an API key, and paste it into the app" width="1992" height="962" loading="lazy" style="width: 540px; max-width: 100%; height: auto; border-radius: 12px; margin-top: 16px;">
-    </section>
-
     <!-- Download CTA -->
     <section class="cta">
         <h2>Download for Mac</h2>
@@ -581,6 +600,14 @@
             <span class="version">v0.2.4</span>
         </a>
         <p class="requirement">Requires macOS 15 Sequoia or later</p>
+    </section>
+
+    <!-- API Key -->
+    <section class="info">
+        <h3>Get your own AI for food plans</h3>
+        <p>You need a Claude "API key" to use the AI features. It's simple, and we step you through it. There's no subscription &mdash; you create an account with Claude (made by Anthropic) and purchase a minimum of $5 in credits. The credits last for a year.</p>
+        <p>We track the costs in the app for you &mdash; a typical meal plan costs a few cents, a recipe is usually a penny or two. $5 will go a long way. (You pay Anthropic directly — we never see your data or take a cut.)</p>
+        <img src="images/screenshot-api-key.webp" alt="Set Up Your AI Provider panel showing 4 steps: create an Anthropic account, add credits, create an API key, and paste it into the app" width="1992" height="962" loading="lazy" style="width: 540px; max-width: 100%; height: auto; border-radius: 12px; margin-top: 16px;">
     </section>
 
     </main>

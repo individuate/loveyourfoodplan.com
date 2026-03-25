@@ -477,17 +477,28 @@
         <p>&copy; 2026 Individuate LLC</p>
     </footer>
 
+    <script src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js" data-app-id="E57678CD-7E09-49A9-B6A3-61D954F4DD7B"></script>
+
     <div class="lightbox-overlay" id="lightbox">
         <img id="lightbox-img" src="" alt="">
     </div>
     <script>
+        const td = window.TelemetryDeck;
         const overlay = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
+
+        // Download button click
+        document.querySelector('.download-btn').addEventListener('click', () => {
+            td?.signal('downloadClicked');
+        });
+
+        // Lightbox
         document.querySelectorAll('.feature-screenshot img, .showcase-screenshot img').forEach(img => {
             img.addEventListener('click', () => {
                 lbImg.src = img.src;
                 lbImg.alt = img.alt;
                 overlay.classList.add('active');
+                td?.signal('screenshotZoomed', { image: img.src.split('/').pop() });
             });
         });
         overlay.addEventListener('click', () => overlay.classList.remove('active'));

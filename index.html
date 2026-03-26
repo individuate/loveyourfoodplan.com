@@ -439,10 +439,19 @@
         }
 
         .desktop-only { display: block; }
+        .mobile-only { display: none; }
+        .mobile-download-note {
+            font-size: 0.875rem;
+            color: var(--color-secondary);
+            text-align: center;
+            line-height: 1.5;
+            max-width: 300px;
+        }
 
         /* Tablet */
         @media (max-width: 960px) {
             .desktop-only { display: none; }
+            .mobile-only { display: block; }
             .nav { padding: 20px 24px; }
             .hero { padding: 80px 24px 60px; }
             .hero .subtitle { font-size: 1rem; line-height: 1.5; }
@@ -495,8 +504,10 @@
         <h1>Meal planning that<br>starts with what you love</h1>
         <p class="subtitle">AI-powered meal plans built around your dietary approaches, restrictions, and personal preferences.</p>
         <p class="aside">Old-school macOS app. No login. No cloud.</p>
-        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" style="margin-bottom: -16px;"><img src="images/app-icon-160.webp" alt="Download Love Your Food Plan" width="200" height="200" style="width: 100px; height: auto;"></a>
-        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="hero-cta">Download for Mac</a>
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="desktop-only" style="margin-bottom: -16px;"><img src="images/app-icon-160.webp" alt="Download Love Your Food Plan" width="200" height="200" style="width: 100px; height: auto;"></a>
+        <img src="images/app-icon-160.webp" alt="Love Your Food Plan app icon" width="200" height="200" class="mobile-only" style="width: 100px; height: auto;">
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="hero-cta desktop-only">Download for Mac</a>
+        <p class="mobile-only mobile-download-note">A macOS app &mdash; visit this page on your Mac to download.</p>
     </section>
 
     <section class="intro">
@@ -599,11 +610,12 @@
     <section class="cta">
         <h2>Download for Mac</h2>
         <p class="free">Completely free. No demo mode, no ads.</p>
-        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="download-btn">
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="download-btn desktop-only">
             <span class="label">Download for Mac</span>
             <span class="version">v0.2.5</span>
         </a>
-        <p class="requirement">Requires macOS 15 Sequoia or later</p>
+        <p class="requirement desktop-only">Requires macOS 15 Sequoia or later</p>
+        <p class="mobile-only mobile-download-note">Visit this page on your Mac to download.</p>
     </section>
 
     <!-- API Key -->

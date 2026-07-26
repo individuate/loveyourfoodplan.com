@@ -1,0 +1,9 @@
+# Working context, synced from the private app repo — deliberately NOT tracked.
+#
+# This repo is public and serves loveyourfoodplan.com. Design rationale and
+# agent working instructions are backstage: their canonical home is the private
+# LoveYourFoodPlan repo, at marketing/site/design-context.md. The copy here
+# exists only so design tooling resolves it from this root.
+.impeccable.md
+
+.DS_Store

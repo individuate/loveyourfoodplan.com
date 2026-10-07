@@ -438,8 +438,13 @@
             outline-offset: 2px;
         }
 
+        /* The platform branch, decided by the head script. */
+        [data-mac-note] { display: none; }
+        .not-mac [data-mac-note] { display: block; }
+        .not-mac [data-download] { display: none; }
+        /* Layout only, not platform: the generating strip steps aside on touch
+           screens and at tablet width. */
         .desktop-only { display: block; }
-        .mobile-only { display: none; }
         .mobile-download-note {
             font-size: 0.875rem;
             color: var(--color-secondary);
@@ -448,16 +453,13 @@
             max-width: 300px;
         }
 
-        /* Touch devices (iPad landscape, etc.) — hide download links */
         @media (pointer: coarse) {
             .desktop-only { display: none; }
-            .mobile-only { display: block; }
         }
 
         /* Tablet */
         @media (max-width: 960px) {
             .desktop-only { display: none; }
-            .mobile-only { display: block; }
             .nav { padding: 20px 24px; }
             .hero { padding: 80px 24px 60px; }
             .hero .subtitle { font-size: 1rem; line-height: 1.5; }
@@ -495,6 +497,23 @@
             .download-btn { padding: 14px 28px; }
         }
     </style>
+    <!-- Which platform, decided before paint. The download links are for macOS
+         laptops and desktops; everyone else gets a one-line note instead.
+         True detection rather than a viewport proxy, so a Mac in a narrow window
+         still sees its button (it used to get the phone note at <=960px).
+         iPadOS reports "MacIntel" but has touch points; a Mac has none.
+         navigator.platform is deprecated, so the modern field is read first and
+         the user-agent string last. Fails open: no signal, or no script at all,
+         shows the download links — the note is hidden by default in CSS and only
+         the `not-mac` class reveals it. Same branch as music-prism.com's. -->
+    <script>
+    (function () {
+        var hints = navigator.userAgentData;
+        var signal = (hints && hints.platform) || navigator.platform || navigator.userAgent || '';
+        var looksMac = /mac/i.test(signal);
+        if (signal && !(looksMac && navigator.maxTouchPoints === 0)) document.documentElement.className += ' not-mac';
+    })();
+    </script>
 </head>
 <body>
 
@@ -511,10 +530,10 @@
         <h1>Meal planning that<br>starts with what you love</h1>
         <p class="subtitle">AI-powered meal plans built around your dietary approaches, restrictions, and personal preferences.</p>
         <p class="aside">Old-school macOS app. No login. No cloud.</p>
-        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="desktop-only" style="margin-bottom: -16px;"><img src="images/app-icon-160.webp" alt="Download Love Your Food Plan" width="200" height="200" style="width: 100px; height: auto;"></a>
-        <img src="images/app-icon-160.webp" alt="Love Your Food Plan app icon" width="200" height="200" class="mobile-only" style="width: 100px; height: auto;">
-        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="hero-cta desktop-only">Download for Mac</a>
-        <p class="mobile-only mobile-download-note">A macOS app &mdash; visit this page on your Mac to download.</p>
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" data-download style="margin-bottom: -16px;"><img src="images/app-icon-160.webp" alt="Download Love Your Food Plan" width="200" height="200" style="width: 100px; height: auto;"></a>
+        <img src="images/app-icon-160.webp" alt="Love Your Food Plan app icon" width="200" height="200" data-mac-note style="width: 100px; height: auto;">
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="hero-cta" data-download>Download for Mac</a>
+        <p class="mobile-download-note" data-mac-note>A macOS app &mdash; visit this page on your Mac to download.</p>
     </section>
 
     <section class="intro">
@@ -631,12 +650,12 @@
     <section class="cta">
         <h2>Download for Mac</h2>
         <p class="free">Completely free. No demo mode, no ads.</p>
-        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="download-btn desktop-only">
+        <a href="https://github.com/individuate/loveyourfoodplan.com/releases/latest/download/LoveYourFoodPlan.dmg" class="download-btn" data-download>
             <span class="label">Download for Mac</span>
             <span class="version">v0.5.4</span>
         </a>
-        <p class="requirement desktop-only">Requires macOS 15 Sequoia or later</p>
-        <p class="mobile-only mobile-download-note">Visit this page on your Mac to download.</p>
+        <p class="requirement" data-download>Requires macOS 15 Sequoia or later</p>
+        <p class="mobile-download-note" data-mac-note>Visit this page on your Mac to download.</p>
     </section>
 
     <!-- API Key -->
